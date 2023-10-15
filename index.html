@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Interface</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #chat-box {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            overflow-y: scroll;
+            margin-bottom: 20px;
+        }
+        #chat-box p {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat-box">
+</div>
+
+<input type="text" id="user-input" placeholder="Enter your prompt">
+<button id="submit-button">Submit</button>
+
+<script>
+$(document).ready(function() {
+    $("#submit-button").click(function() {
+        const userPrompt = $("#user-input").val();
+        
+        // Display user's prompt in the chat box
+        $("#chat-box").append("<p>User: " + userPrompt + "</p>");
+        
+        // Send the prompt to Flask
+        $.ajax({
+            url: 'http://127.0.0.1:5000/generate',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ prompt: userPrompt }),
+            success: function(response) {
+                // Display the generated text in the chat box
+                $("#chat-box").append("<p>Bot: " + response.generated_text + "</p>");
+                
+                // Scroll to the bottom of the chat box
+                $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+            }
+        });
+        
+        // Clear the input field
+        $("#user-input").val('');
+    });
+});
+</script>
+
+</body>
+</html>
+
