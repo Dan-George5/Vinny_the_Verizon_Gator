@@ -43,10 +43,14 @@ pip install Flask Flask-CORS
 After installing the prerequisites, you can run the Flask app with:
 
 ```bash
-python app.py
+python palm_flask_app.py
 ```
 
-Open your web browser and go to `http://127.0.0.1:5000/` to interact with the chatbot.
+Open new terminal, and run the command
+
+```bash
+open index.html
+```
 
 ## Usage
 
