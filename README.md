@@ -2,8 +2,6 @@
 
 Vinny the Verizon Gator is a chatbot interface for helping users find the most suitable Verizon plans for them. This project uses a Language Model to generate answers based on user's questions.
 
-![Vinny the Verizon Gator Logo](./path/to/your/logo.png)
-
 ## Installation
 
 ### Prerequisites
@@ -16,29 +14,29 @@ Vinny the Verizon Gator is a chatbot interface for helping users find the most s
 
 Clone the repository to your local machine.
 
-\```bash
+```bash
 git clone https://github.com/Dan-George5/Vinny_the_Verizon_Gator.git
 cd Vinny_the_Verizon_Gator
-\```
+```
 
 Create a virtual environment (optional but recommended):
 
-\```bash
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-\```
+```
 
 Install the required Python packages:
 
-\```bash
+```bash
 pip install -r requirements.txt
-\```
+```
 
 If `requirements.txt` is not available, you can manually install the dependencies:
 
-\```bash
+```bash
 pip install Flask Flask-CORS
-\```
+```
 
 ### Running the Application
 
