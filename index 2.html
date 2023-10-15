@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Interface</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Style for the entire page */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Style for the chat box container */
+        #chat-box-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+	#chat-box {
+    	width: 400px;
+    	height: 400px;
+    	border: 1px solid black;
+   	overflow-y: scroll;
+    	margin-bottom: 20px;
+    	background-image: url('verizon.png'); /* Replace 'your-image.jpg' with the path to your background image */
+    	background-size: cover; /* Adjust the size as needed */
+    	background-repeat: no-repeat;
+
+
+        }
+
+        #chat-box p {
+            margin: 5px;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-message {
+            background-color: rgba(0, 123, 255, 0.7);;
+            color: white;
+            margin-left: 10px;
+            border-radius: 10px;
+        }
+
+        .bot-message {
+            background-color: rgba(240, 240, 240, 0.7);
+            color: black;
+            margin-right: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat-box-container">
+    <div id="chat-box"></div>
+
+    <input type="text" id="user-input" placeholder="Enter your prompt">
+    <button id="submit-button">Submit</button>
+</div>
+
+<script>
+$(document).ready(function() {
+    $("#submit-button").click(function() {
+        const userPrompt = $("#user-input").val();
+        
+        // Display user's prompt in the chat box
+        $("#chat-box").append(`
+            <div class="message user-message">
+                <img class="avatar" src="sil.png" alt="User Avatar">
+                <p>${userPrompt}</p>
+            </div>
+        `);
+        
+        // Send the prompt to Flask
+        $.ajax({
+            url: 'http://127.0.0.1:5000/generate',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ prompt: userPrompt }),
+            success: function(response) {
+                // Display the generated text in the chat box
+                $("#chat-box").append(`
+                    <div class="message bot-message">
+                        <img class="avatar" src="gator_bot.mp4" alt="Bot Avatar">
+                        <p>${response.generated_text}</p>
+                    </div>
+                `);
+                
+                // Scroll to the bottom of the chat box
+                $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+            }
+        });
+        
+        // Clear the input field
+        $("#user-input").val('');
+    });
+});
+
+</script>
+
+</body>
+</html>
+              
