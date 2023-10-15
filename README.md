@@ -40,6 +40,13 @@ pip install Flask Flask-CORS
 
 ### Running the Application
 
+Source the venv
+
+
+```bash
+source source venv/bin/activate
+```
+
 After installing the prerequisites, you can run the Flask app with:
 
 ```bash
