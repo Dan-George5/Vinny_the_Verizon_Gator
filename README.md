@@ -1,6 +1,6 @@
 # Vinny the Verizon Gator
 
-Vinny the Verizon Gator is a chatbot interface for helping users find the most suitable Verizon plans for them. This project uses a Language Model to generate answers based on user's questions.
+Vinny the Verizon Gator is a chatbot interface for helping users find the most suitable Verizon plans for them. This project uses Google's PaLM Language Model to generate answers based on user's questions.
 
 ## Installation
 
